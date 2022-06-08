@@ -11,8 +11,8 @@ Example sketch for six different boat gauges namely:
 For live demonstration visit [https://www.youtube.com/watch?v=y_H7HM0oyoo]
 
 # Arduino IDE Setup
-1. Install ESP32 boards library [https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/]
-2. Install TFT_eSPI library through Library Manager in Arduino IDE [https://www.arduino.cc/reference/en/libraries/tft_espi/]
+1. Install ESP32 boards library [guide from randomnerdtutorials](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/)
+2. Install TFT_eSPI library through Library Manager in Arduino IDE [arduino reference](https://www.arduino.cc/reference/en/libraries/tft_espi/)
 
 # Cofigure TFT_eSPI library
 Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setup.h`` and comment out line 44:
@@ -46,3 +46,4 @@ Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setups\Setup200_GC9A01.h`` a
 # ESP32 & GC9A01 Connections
 
 ![image](https://user-images.githubusercontent.com/6739564/172683255-a640ba47-1d2f-4fc0-b8f3-acbada262f81.png)
+> Image is curtesy of WOKWI.com and some MS Paint work
