@@ -33,3 +33,7 @@ Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setups\Setup200_GC9A01.h`` a
 #define TFT_DC   16  // Data Command control pin
 #define TFT_RST  4   // Reset pin (could connect to Arduino RESET pin)
 ```
+
+# ESP32 & GC9A01 Connections
+
+![image](https://user-images.githubusercontent.com/6739564/172683255-a640ba47-1d2f-4fc0-b8f3-acbada262f81.png)
