@@ -1,0 +1,35 @@
+# BoatGauges
+Example sketch for six differnt boat gauges.
+
+# Arduino IDE Setup
+1. Install ESP32 boards library [https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/]
+2. Install TFT_eSPI library through Library Manager in Arduino IDE [https://www.arduino.cc/reference/en/libraries/tft_espi/]
+
+# Cofigure TFT_eSPI library
+Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setup.h`` and comment out line 44:
+```
+//#define ILI9341_DRIVER
+```
+On line 64 uncomment GC9A01 driver:
+```
+#define GC9A01_DRIVER
+```
+
+Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setup_Select.h`` and comment out line 24:
+```
+//#include <User_Setups/Setup1_ILI9341.h>
+```
+On line 105 uncomment GC9A01 setup:
+```
+#include <User_Setups/Setup200_GC9A01.h>
+```
+
+Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setups\Setup200_GC9A01.h`` and update pin assignments:
+```
+#define TFT_MISO 5
+#define TFT_MOSI 2
+#define TFT_SCLK 15
+#define TFT_CS   17  // Chip select control pin
+#define TFT_DC   16  // Data Command control pin
+#define TFT_RST  4   // Reset pin (could connect to Arduino RESET pin)
+```
