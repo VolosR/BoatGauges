@@ -1,5 +1,14 @@
 # BoatGauges
-Example sketch for six differnt boat gauges.
+Example sketch for six different boat gauges namely:
+1. Coolant pressure (psi)
+2. Coolant temp (degree C)
+3. Oil pressure (psi)
+4. Speedo (km/h)
+5. Tacho (rpm)
+6. Battery voltage
+
+
+For live demonstration visit [https://www.youtube.com/watch?v=y_H7HM0oyoo]
 
 # Arduino IDE Setup
 1. Install ESP32 boards library [https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/]
