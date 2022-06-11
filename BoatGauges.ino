@@ -9,14 +9,14 @@
 
 TFT_eSPI tft = TFT_eSPI();           // invoke tft library
 TFT_eSprite img = TFT_eSprite(&tft); // sprite for gauge
-TFT_eSprite ln = TFT_eSprite(&tft);  // sprite for ??
+//TFT_eSprite ln = TFT_eSprite(&tft);  // unused sprite
 
 double rad = 0.01745; // constant: number of radian per degree
-int angle;
+int angle;            // mapped potentiometer value to corresponding angle on a circle
 
-// circle constants (screen position and size)
-int sx = 120; // x position
-int sy = 120; // y position
+// needle indicator circle constants
+int sx = 120; // x coordinate
+int sy = 120; // y coordinate
 int r = 76;   // radius
 
 // array for storing bounding box coordinates for every degree alog the circle
@@ -25,7 +25,7 @@ float y[360];
 float x2[360];
 float y2[360];
 
-// ??
+// pwm variables which i think supposed control screen brigness
 const int pwmFreq = 5000;
 const int pwmResolution = 8;
 const int pwmLedChannelTFT = 0;
@@ -35,24 +35,25 @@ int chosenOne = 0;                              // selected gauge index
 int minValue[6] = {  0,  20,  0,  0,  0,  80 }; // min values for different gauges
 int maxValue[6] = { 40, 100, 60, 80, 70, 160 }; // max values for different gauges
 
-int dbounce = 0; // push button debounce param
+int dbounce = 0; // simple button debounce variable to prevent skipping multiple gauges as a result of button press
 
 void setup() {
-  // ??
+  // i think this supposed to control screen brightness via pwm but it doesn't seem to have any effect
   ledcSetup(pwmLedChannelTFT, pwmFreq, pwmResolution);
   ledcAttachPin(5, pwmLedChannelTFT);
   ledcWrite(pwmLedChannelTFT, 90);
 
   pinMode(12, INPUT_PULLUP); // button
 
+  // initialise tft library
   tft.init();
-  tft.setRotation(0);
-  tft.setSwapBytes(true);
-  img.setSwapBytes(true);
+  tft.setRotation(0);     // set the display image orientation to 0, 1, 2 or 3
+  tft.setSwapBytes(true); // swap the byte order for pushImage() and pushPixels() - corrects endianness
+  img.setSwapBytes(true); // required to load background sprite
 
   // set background color, image
-  tft.fillScreen(TFT_ORANGE);
-  img.createSprite(240, 240);
+  tft.fillScreen(TFT_ORANGE); // required to load background sprite
+  img.createSprite(240, 240); // create sprite in RAM
 
   // set gauge text position, size, color, font
   tft.setPivot(60, 60);
@@ -85,17 +86,18 @@ void setup() {
   }
 }
 
+// debug
 //min angle 136 or 137
 //max angle 43
 
-int a1, a2;     // min/max angles for red triangle bounding box
-int result = 0; // potentiometer value
+int a1, a2;     // min/max angles for needle indicator bounding box
+int result = 0; // mapped potentiometer value to gauge min/max range
 
 void loop() {
   // check button state with debounce logic
   if (digitalRead(12) == 0) {
     if (dbounce == 0) {
-      dbounce = 1;
+      dbounce = 1; // set to prevent skipping gauges if button is held
       chosenOne++; // select next gauge
 
       // reset gauge index on overflow
@@ -107,7 +109,7 @@ void loop() {
     dbounce = 0;
   }
 
-  // read potentiometer value and map it for selected gauge min and max
+  // read potentiometer value and map it for selected gauge min/max range
   result = map(analogRead(14), 0, 4095, minValue[chosenOne], maxValue[chosenOne]);
 
   // map obtained result to corresponding angle on a circle
@@ -140,8 +142,10 @@ void loop() {
 
   // push measured value to "img" sprite
   if (chosenOne == 5) {
+    // battery voltage with 2 decimal places
     img.drawFloat(result / 10.00, 2, 120, 114);
   } else if (chosenOne == 4) {
+    // tachometer (with x100 multiplier)
     img.drawString(String(result * 100), 120, 114);
   }  else {
     img.drawString(String(result), 120, 114);
