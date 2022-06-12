@@ -57,7 +57,7 @@ void setup() {
 
   // set gauge text position, size, color, font
   tft.setPivot(60, 60);
-  img.setTextDatum(4);
+  img.setTextDatum(4); // middle centre text allignment
   img.setTextColor(TFT_BLACK, 0xAD55);
   img.setFreeFont(&Orbitron_Medium_28);
 
