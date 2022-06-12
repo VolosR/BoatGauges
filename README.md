@@ -17,7 +17,7 @@ For live demonstration visit [https://www.youtube.com/watch?v=y_H7HM0oyoo]
 ![image](https://user-images.githubusercontent.com/6739564/173196508-e732ded0-ca3b-419f-80a7-bce4eaf675de.png)
 
 
-# Cofigure TFT_eSPI library
+# Configure TFT_eSPI library
 Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setup.h`` and comment out line 44:
 ```
 //#define ILI9341_DRIVER
@@ -49,7 +49,7 @@ Open ``..\Documents\Arduino\libraries\TFT_eSPI\User_Setups\Setup200_GC9A01.h`` a
 # ESP32 & GC9A01 Connections
 
 ![image](https://user-images.githubusercontent.com/6739564/172683255-a640ba47-1d2f-4fc0-b8f3-acbada262f81.png)
-> Image is curtesy of WOKWI.com and some MS Paint work
+> Image is courtesy of WOKWI.com and some MS Paint work
 
 ```
 ESP32     GC9A01
