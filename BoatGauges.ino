@@ -43,6 +43,7 @@ void setup() {
     tft.setRotation(0);
     tft.setSwapBytes(true);
     img.setSwapBytes(true);
+    img.setColorDepth(8);
     tft.fillScreen(TFT_ORANGE);
     img.createSprite(240, 240);
     
